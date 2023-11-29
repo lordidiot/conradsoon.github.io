@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Conrad's Stuff</title>
+    <style>
+      body {
+        background-color: #ffd700; /* Sunflower yellow background */
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        color: #4b0082; /* Indigo text color */
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      .marquee {
+        font-size: 24px;
+        font-weight: bold;
+        /* color: #ff0000; */
+        text-decoration: blink;
+      }
+      .main-content {
+        background-image: url("sparkle-background.gif");
+        border: 3px dashed #008000;
+        padding: 20px;
+        margin: 20px auto;
+        width: 80%;
+      }
+      .footer {
+        font-size: 12px;
+        color: #008000;
+      }
+      .hit-counter {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="marquee">
+      <img
+        class="computer-animation"
+        src="img/computer-ani.gif"
+        alt="Computer Animation"
+      />
+      welcome to conrad's art stuff!
+      <img
+        class="computer-animation"
+        src="img/computer-ani.gif"
+        alt="Computer Animation"
+      />
+    </div>
+    <div class="main-content">
+      <!-- <p>
+			  born too late to explore the earth, born too early to explore the
+			  galaxy, born just in time to make retro websites
+			</p> -->
+      <div class="photos-section">
+        <div>
+          <!-- <p><img src="img/camera.gif" />photos of geometric buildings</p> -->
+          <p>
+            <img src="img/camera.gif" /><a href="art-stuff/photos.html"
+              >selected photographs from random walks of length n</a
+            >
+          </p>
+          <p>
+            <img src="img/writing_book.gif" /><a
+              href="art-stuff/short-fiction.html"
+              >short fiction (this is a WIP)</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <img src="img/sunflower.gif" />
+      <p>Page last updated: January 1, 1999</p>
+      <p class="hit-counter">
+        You are visitor number: <span id="visitor-number">Loading...</span>
+      </p>
+    </div>
+  </body>
+  <script>
+    function generateRandomVisitorNumber() {
+      const currentTimeUnix = Math.floor(Date.now() / 1000 / 3500 - 400000);
+      const randomVisitorNumber = currentTimeUnix.toString();
+      return randomVisitorNumber;
+    }
+
+    function setVisitorNumber() {
+      const visitorNumberElement = document.getElementById("visitor-number");
+      const randomVisitorNumber = generateRandomVisitorNumber();
+      visitorNumberElement.textContent = randomVisitorNumber;
+    }
+
+    setVisitorNumber();
+  </script>
+</html>
