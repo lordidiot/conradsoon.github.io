@@ -7,104 +7,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title>conrad's website!</title>
-    <style>
-      :root {
-        /* Light theme */
-        --primary-bg-color: #f5f5f5;
-        --primary-text-color: #333;
-        --link-color: #1678c2;
-        --hr-color: #ccc;
-      }
-
-      [data-theme="dark"] {
-        /* Dark theme */
-        --primary-bg-color: #333;
-        --primary-text-color: #f5f5f5;
-        --link-color: #f97618;
-        --hr-color: #f5f5f5;
-      }
-
-      body {
-        font-family: "Palanquin", monospace;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: 100vh;
-        margin: 0;
-        background-color: var(--primary-bg-color);
-        color: var(--primary-text-color);
-      }
-      .container {
-        width: 50%;
-        max-width: 66.66%; /* 2/3 of the viewport width */
-        padding: 0; /* no padding on the sides */
-        margin: 2em auto;
-        text-align: left; /* Left-justify the text */
-      }
-      a {
-        color: var(--link-color);
-      }
-      nav a {
-        margin-right: 1em;
-      }
-      nav a:last-child {
-        margin-right: 0;
-      }
-      hr {
-        border: 1px solid var(--hr-color);
-        width: 100%; /* make the line fill up the full width */
-      }
-      .name {
-        font-size: 1.5rem;
-      }
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-      }
-      .centered-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-        height: 100%;
-      }
-      h1,
-      h2,
-      p,
-      ul {
-        margin-top: 0.5em; /* adds some vertical space between text elements */
-        margin-bottom: 0.1em; /* adds some vertical space between text elements */
-      }
-      /* Media queries for responsiveness */
-      @media (max-width: 800px) {
-        .container {
-          width: 100%;
-        }
-        nav a {
-          margin-right: 0.5em;
-        }
-      }
-      button {
-        background-color: var(--primary-bg-color);
-        color: var(--primary-text-color);
-        border: 2px solid var(--link-color);
-        padding: 2px;
-        font-size: 1rem;
-        width: 2em;
-        height: 2em;
-        border-radius: 5px;
-        transition: background-color 0.3s, color 0.3s;
-        cursor: pointer;
-        outline: none;
-      }
-
-      button:hover {
-        background-color: var(--link-color);
-        color: var(--primary-bg-color);
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Palanquin"
       rel="stylesheet"
@@ -119,20 +22,13 @@
           <a href="./">about</a>
           <a href="./art-stuff.html">art stuff</a>
           <a href="./thoughts.html">thoughts</a>
-          <!-- <a href="./photos/index.html">photography</a> -->
-          <!-- <a href="/work-experience">writings</a>
-          <a href="/projects">projects</a>
-          <a href="/contact">contact</a> -->
           <button id="toggleTheme">Toggle Night Mode</button>
         </nav>
       </div>
       <hr />
       <section id="writing">
         <h2>writing</h2>
-        <ul>
-          <!-- <li><a href="blog-post-1.html">Blog Post Title 1</a></li>
-          <li><a href="blog-post-2.html">Blog Post Title 2</a></li> -->
-        </ul>
+        <ul></ul>
       </section>
       <section id="talks">
         <h2>talks</h2>
@@ -141,14 +37,20 @@
             <strong
               ><a href="https://www.youtube.com/watch?v=JHzc03SyP4Q"
                 >fantastic range query data structures & where to find them</a
-                  href="https://docs.google.com/presentation/d/1_tSdAWOw5aE__4GK9iA0K3q2Cry_c9SHkmDFfE-agB8/edit?usp=sharing"
-                  > | <a href="">slides</a></strong
+              >
+              |
+              <a
+                href="https://docs.google.com/presentation/d/1_tSdAWOw5aE__4GK9iA0K3q2Cry_c9SHkmDFfE-agB8/edit?usp=sharing"
+                >slides</a
+              ></strong
             >
             <ul>
               <li>
-                1h 30min of me talking about range query data structures, focusing
-                on deriving the intuition and analysing the performance of
-                segment trees and various optimisations like lazy propagation. a talk i gave at OrcaCode, a coding club in our dorm (RC4). 
+                1h 30min of me talking about range query data structures,
+                focusing on deriving the intuition and analysing the performance
+                of segment trees and various optimisations like lazy
+                propagation. a talk i gave at OrcaCode, a coding club in our
+                dorm (RC4).
               </li>
             </ul>
           </li>
@@ -158,61 +60,5 @@
       <hr />
     </div>
   </body>
-  <script>
-    // Function to toggle theme
-    function toggleTheme() {
-      let currentTheme = document.documentElement.getAttribute("data-theme");
-      let newTheme = currentTheme === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", newTheme);
-      localStorage.setItem("theme", newTheme);
-      const toggleButton = document.getElementById("toggleTheme");
-
-      // Set button text based on the new theme
-      if (newTheme === "dark") {
-        toggleButton.textContent = "🌙"; // moon emoji for dark mode
-      } else {
-        toggleButton.textContent = "☀️"; // sun emoji for light mode
-      }
-    }
-    function updateButtonContent(theme) {
-      if (theme === "dark") {
-        themeToggleButton.textContent = "🌙";
-      } else {
-        themeToggleButton.textContent = "☀️";
-      }
-    }
-
-    let storedTheme = localStorage.getItem("theme");
-
-    // Check for user's system preference
-    const userPrefersDark =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    if (storedTheme) {
-      // Use stored theme if present
-      document.documentElement.setAttribute("data-theme", storedTheme);
-    } else if (userPrefersDark) {
-      // Otherwise fallback to system preference
-      document.documentElement.setAttribute("data-theme", "dark");
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
-    }
-
-    // Attach event listener to toggle button
-    document
-      .getElementById("toggleTheme")
-      .addEventListener("click", toggleTheme);
-    const themeToggleButton = document.getElementById("toggleTheme");
-    if (storedTheme) {
-      document.documentElement.setAttribute("data-theme", storedTheme);
-      updateButtonContent(storedTheme);
-    } else if (userPrefersDark) {
-      document.documentElement.setAttribute("data-theme", "dark");
-      updateButtonContent("dark");
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
-      updateButtonContent("light");
-    }
-  </script>
+  <script src="theme-toggle.js"></script>
 </html>
