@@ -94,3 +94,20 @@ button:hover {
   background-color: var(--link-color);
   color: var(--primary-bg-color);
 }
+#nameSpinner {
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+}
+
+#nameSpinner.spin {
+  animation: spin 1s linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
