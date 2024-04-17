@@ -99,10 +99,80 @@ nameSpinner.addEventListener("click", function () {
   lastClickTime = currentTime;
 });
 
-// // toggle comic sans and uneven capitalization
-// document.getElementById("toggleStyle").addEventListener("click", function () {
-//   document.body.classList.toggle("funStyle");
-// });
+// clown mode
+const toggleStyleButton = document.getElementById("toggleStyle");
+const body = document.body;
+const youtubeVideoContainer = document.getElementById("youtubeVideoContainer");
+let currentState = 0;
+const maxStates = 5;
+const clownEmojis = ["🤡", "🤪", "😜", "😂", "🥳"];
+let player;
+
+// Load the YouTube Embed API
+function loadYouTubeAPI() {
+  const tag = document.createElement("script");
+  tag.src = "https://www.youtube.com/iframe_api";
+  const firstScriptTag = document.getElementsByTagName("script")[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+}
+
+// Create the YouTube player
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player("youtubeVideoContainer", {
+    height: "360",
+    width: "640",
+    videoId: "2XRXT8xZ62s", // Replace with the actual YouTube video ID
+    events: {
+      onReady: onPlayerReady,
+    },
+  });
+}
+
+// Autoplay the video when ready
+function onPlayerReady(event) {
+  if (currentState === 4) {
+    event.target.playVideo();
+  }
+}
+
+toggleStyleButton.addEventListener("click", function () {
+  currentState = (currentState + 1) % maxStates;
+
+  if (currentState === 0) {
+    body.classList.remove("funStyle", "state2", "state3");
+    body.style.backgroundColor = "";
+    body.style.color = "";
+    document.querySelectorAll("p, li").forEach((el) => {
+      el.textContent = el.textContent.toLowerCase();
+    });
+    youtubeVideoContainer.style.display = "none";
+    if (player) {
+      player.stopVideo();
+    }
+  } else if (currentState === 1) {
+    body.classList.add("funStyle");
+  } else if (currentState === 2) {
+    body.classList.add("state2");
+    body.style.backgroundColor = "#ffccff";
+    body.style.color = "#333";
+  } else if (currentState === 3) {
+    body.classList.add("state3");
+    document.querySelectorAll("p, li").forEach((el) => {
+      el.textContent = randomCaps(el.textContent);
+    });
+  } else if (currentState === 4) {
+    if (confirm("engage clown mode? (this will play music)")) {
+      youtubeVideoContainer.style.display = "block";
+      if (player) {
+        player.playVideo();
+      }
+    } else {
+      currentState = 0; // If the user cancels, go back to State 0
+    }
+  }
+
+  toggleStyleButton.textContent = clownEmojis[currentState];
+});
 
 // Function to randomly capitalize letters
 function randomCaps(text) {
@@ -114,25 +184,5 @@ function randomCaps(text) {
     .join("");
 }
 
-document.getElementById("toggleStyle").addEventListener("click", function () {
-  const body = document.body;
-  body.classList.toggle("funStyle"); // Toggle fun styles
-
-  // Check if the fun style is applied
-  if (body.classList.contains("funStyle")) {
-    // Apply random capitalization
-    document.querySelectorAll("p, li").forEach((el) => {
-      el.textContent = el.textContent
-        .split("")
-        .map((char) =>
-          Math.random() > 0.5 ? char.toUpperCase() : char.toLowerCase()
-        )
-        .join("");
-    });
-  } else {
-    // Reset text to lowercase
-    document.querySelectorAll("p, li").forEach((el) => {
-      el.textContent = el.textContent.toLowerCase();
-    });
-  }
-});
+// Load the YouTube Embed API
+loadYouTubeAPI();

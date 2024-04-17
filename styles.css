@@ -132,13 +132,6 @@ button:hover {
   }
 }
 
-/* Base styles */
-body.funStyle {
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  background-color: #ffccff; /* Light pink background */
-  color: #333; /* Dark text color for contrast */
-}
-
 /* Text animation for rainbow effect */
 @keyframes rainbowText {
   0% {
@@ -170,6 +163,23 @@ body.funStyle {
 .funStyle h2,
 .funStyle a {
   animation: rainbowText 5s linear infinite;
+}
+
+/* State 1: Comic Sans */
+body.funStyle {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+/* State 2: Background and font color change */
+body.funStyle.state2 {
+  background-color: #ffccff;
+  color: #333;
+}
+
+/* State 3: Random capitalization */
+body.funStyle.state3 p,
+body.funStyle.state3 li {
+  text-transform: none;
 }
 
 /* .funStyle p,
