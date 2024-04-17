@@ -52,8 +52,8 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 }
+
 .centered-content {
   display: flex;
   flex-direction: column;
@@ -67,7 +67,6 @@ ul {
   margin-top: 0.5em; /* adds some vertical space between text elements */
   margin-bottom: 0.1em; /* adds some vertical space between text elements */
 }
-/* Media queries for responsiveness */
 @media (max-width: 800px) {
   .container {
     width: 100%;
@@ -111,3 +110,73 @@ button:hover {
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .name {
+    margin-bottom: 10px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a {
+    margin-bottom: 5px;
+  }
+}
+
+/* Base styles */
+body.funStyle {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  background-color: #ffccff; /* Light pink background */
+  color: #333; /* Dark text color for contrast */
+}
+
+/* Text animation for rainbow effect */
+@keyframes rainbowText {
+  0% {
+    color: red;
+  }
+  15% {
+    color: orange;
+  }
+  30% {
+    color: yellow;
+  }
+  45% {
+    color: green;
+  }
+  60% {
+    color: blue;
+  }
+  75% {
+    color: indigo;
+  }
+  90% {
+    color: violet;
+  }
+  100% {
+    color: red;
+  }
+}
+
+.funStyle h2,
+.funStyle a {
+  animation: rainbowText 5s linear infinite;
+}
+
+/* .funStyle p,
+.funStyle li {
+  text-transform: lowercase;
+}
+.funStyle p::first-letter,
+.funStyle li::first-letter {
+  text-transform: uppercase;
+} */
