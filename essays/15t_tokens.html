@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>how many tokens is 15 trillion?</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Palanquin"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container centered-content">
+      <div class="header">
+        <div class="name">conrad soon</div>
+        <nav>
+          <a href="../">about</a> <a href="../art-stuff.html">art stuff</a>
+          <a href="../thoughts.html">thoughts</a>
+          <button id="toggleTheme">Toggle Night Mode</button>
+        </nav>
+      </div>
+      <hr />
+      <h2>how many tokens is 15 trillion?</h2>
+      <p>
+        meta recently announced llama3, and one of the interesting things is how
+        good it appears (based off benchmarks) even for the 7b models. the
+        announcement attributes its performance to many things: in particular
+        pinning it on improvements in fine-tuning techniques and data sourcing
+        quality. but it also makes reference to the fact that performance still
+        increases log-linearly with tokens used for training.
+      </p>
+      <p>
+        trained on 15t tokens. that's an absurd number of tokens. gpt3 was
+        trained on ~300b tokens. llama1 trained on 1t tokens, llama2 trained on
+        2t tokens. and now, not less than a year later, llama3 was trained on
+        15t tokens. in a span of four years, we've 50,000x-ed the amount of
+        tokens we've taken to train an LLM.
+      </p>
+      <p>
+        that's a truly ludicrous amount of text – presumably high quality text
+        as well. if we take the great gatsby as an "average" book with ~47k
+        words, we get a token count of 76k from using the llama2 tokeniser.
+      </p>
+      <p>
+        15t tokens makes for 235m copies of the great gatsby. if we take the
+        average public library to have 25k books (each shelf has about ~200
+        books, and a library has at least ~100 shelves, with additional books
+        squirreled away somewhere), this makes for 10k libraries stocked to the
+        brim with unique books each.
+      </p>
+      <p>
+        there are about ~60m lifetime ISBN registrations (excluding chinese
+        books). if we take an ISBN registration to be a vaguely good-enough
+        proxy of text quality that corresponds to whatever data quality
+        filtering procedures llama3 used, that means they've at least trained on
+        the textual equivalent of every single published book.
+      </p>
+      <p>and yet, there's still a 200m books worth of text deficit to fill.</p>
+      <p>
+        15t tokens, assuming 4 characters per token on average, makes for 60t
+        characters. assuming each character is a byte each, that's 60tb of data.
+        the pile alone is 825gb (lets be generous and call it 1tb). that's still
+        59tb worth of tokens to fill. the pushshift reddit dump is 2tb more of
+        data.
+      </p>
+      <p>
+        a good chunk of this has to be chinese data right? there's no way to get
+        15t worth of english text alone. maybe discord/instagram/whatsapp? if
+        there's one main question i have after taking the 30-40 minutes to do
+        aget all that training data fromll of these estimations, it's this:
+        where the absolute heck did meta get all the training data from?
+      </p>
+      <hr />
+    </div>
+    <script src="../theme-toggle.js"></script>
+  </body>
+</html>
