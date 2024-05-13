@@ -134,6 +134,8 @@ function onPlayerReady(event) {
     event.target.playVideo();
   }
 }
+let originalContents = {};
+let elementCounter = 0;
 
 toggleStyleButton.addEventListener("click", function () {
   currentState = (currentState + 1) % maxStates;
@@ -142,9 +144,7 @@ toggleStyleButton.addEventListener("click", function () {
     body.classList.remove("funStyle", "state2", "state3");
     body.style.backgroundColor = "";
     body.style.color = "";
-    document.querySelectorAll("p, li").forEach((el) => {
-      el.textContent = el.textContent.toLowerCase();
-    });
+    restoreOriginalContents();
     youtubeVideoContainer.style.display = "none";
     if (player) {
       player.stopVideo();
@@ -157,8 +157,9 @@ toggleStyleButton.addEventListener("click", function () {
     body.style.color = "#333";
   } else if (currentState === 3) {
     body.classList.add("state3");
+    storeOriginalContents();
     document.querySelectorAll("p, li").forEach((el) => {
-      el.textContent = randomCaps(el.textContent);
+      randomCapsTextNodes(el);
     });
   } else if (currentState === 4) {
     if (confirm("engage clown mode? (this will play music)")) {
@@ -174,14 +175,42 @@ toggleStyleButton.addEventListener("click", function () {
   toggleStyleButton.textContent = clownEmojis[currentState];
 });
 
-// Function to randomly capitalize letters
+function storeOriginalContents() {
+  document.querySelectorAll("p, li").forEach((el) => {
+    const elementId = `element-${elementCounter}`;
+    el.setAttribute("data-element-id", elementId);
+    originalContents[elementId] = el.innerHTML;
+    elementCounter++;
+  });
+}
+
+function restoreOriginalContents() {
+  document.querySelectorAll("p, li").forEach((el) => {
+    const elementId = el.getAttribute("data-element-id");
+    if (elementId && originalContents.hasOwnProperty(elementId)) {
+      el.innerHTML = originalContents[elementId];
+    }
+  });
+  originalContents = {};
+  elementCounter = 0;
+}
 function randomCaps(text) {
   return text
     .split("")
     .map((char) =>
-      Math.random() > 0.5 ? char.toUpperCase() : char.toLowerCase()
+      Math.random() < 0.5 ? char.toUpperCase() : char.toLowerCase()
     )
     .join("");
+}
+
+function randomCapsTextNodes(element) {
+  Array.from(element.childNodes).forEach((node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      node.textContent = randomCaps(node.textContent);
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      randomCapsTextNodes(node);
+    }
+  });
 }
 
 // Load the YouTube Embed API
