@@ -207,3 +207,117 @@ body.funStyle.state3 li {
 .funStyle li::first-letter {
   text-transform: uppercase;
 } */
+
+  
+/* for essays */
+.essay {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.essay h2 {
+  font-size: 2.8em;
+  font-weight: 300;
+  margin: 2em 0 1.5em;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.essay-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+.essay-section {
+  margin: 2.5em 0;
+}
+
+.essay p {
+  margin-bottom: 1.4em;
+}
+
+.essay ol {
+  counter-reset: item;
+  list-style: none;
+  margin: 1.5em 0;
+  padding-left: 1em;
+}
+
+.essay ol li {
+  counter-increment: item;
+  margin-bottom: 1em;
+  position: relative;
+  padding-left: 2em;
+}
+
+.essay ol li:before {
+  content: counter(item) ".";
+  position: absolute;
+  left: 0;
+  color: #888;
+  font-weight: 500;
+}
+
+.essay ul {
+  list-style: none;
+  margin: 1.5em 0;
+  padding-left: 1em;
+}
+
+.essay ul li {
+  margin-bottom: 1em;
+  position: relative;
+  padding-left: 1.5em;
+}
+
+.essay ul li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #888;
+}
+
+.essay em, .essay i {
+  font-style: italic;
+  color: #e0e0e0;
+}
+
+.examples li {
+  color: #666;
+  font-style: italic;
+}
+
+.footnotes {
+  margin-top: 3em;
+  padding-top: 1.5em;
+  border-top: 1px solid #ddd;
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .essay-content {
+    color: #d4d4d4;
+  }
+  
+  .essay h2 {
+    color: #ffffff;
+  }
+  
+  .essay ul li:before,
+  .essay ol li:before {
+    color: #999;
+  }
+  
+  .examples li {
+    color: #aaa;
+  }
+  
+  .footnotes {
+    border-top-color: #444;
+    color: #aaa;
+  }
+}
